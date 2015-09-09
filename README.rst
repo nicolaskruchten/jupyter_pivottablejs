@@ -1,4 +1,4 @@
-``pivottablejs``, the Python module
+``pivottablejs``: the Python module
 ===================================
 
 Drag’n’drop Pivot Tables and Charts for `Jupyter/IPython Notebook`_,
