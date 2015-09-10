@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PivotTable.js</title>
+        
+        <!-- external libs from cdnjs -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/1.6.3/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/1.6.3/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/1.6.3/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/1.6.3/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/1.6.3/export_renderers.min.js"></script>
+
+        <style>
+            body {font-family: Verdana;}
+            .node {
+              border: solid 1px white;
+              font: 10px sans-serif;
+              line-height: 12px;
+              overflow: hidden;
+              position: absolute;
+              text-indent: 2px;
+            }
+            .c3-line, .c3-focused {stroke-width: 3px !important;}
+            .c3-bar {stroke: white !important; stroke-width: 1;}
+            .c3 text { font-size: 12px; color: grey;}
+            .tick line {stroke: white;}
+            .c3-axis path {stroke: grey;}
+            .c3-circle { opacity: 1 !important; }
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+            $(function(){
+                if(window.location != window.parent.location)
+                    $("<a>", {target:"_blank", href:""})
+                        .text("[pop out]").prependTo($("body"));
+                    
+                $("#output").pivotUI( 
+                    $.csv.toArrays($("#output").text()), 
+                    { 
+                        renderers: $.extend(
+                            $.pivotUtilities.renderers, 
+                            $.pivotUtilities.c3_renderers, 
+                            $.pivotUtilities.d3_renderers,
+                            $.pivotUtilities.export_renderers
+                            ),
+                        hiddenAttributes: [""]
+                    }
+                ).show();
+             });
+        </script>
+        <div id="output" style="display: none;">,Name,Party,Province,Age,Gender
+0,"Liu, Laurin",NDP,Quebec,22.0,Female
+1,"Mourani, Maria",Bloc Quebecois,Quebec,43.0,Female
+2,"Sellah, Djaouida",NDP,Quebec,,Female
+3,"St-Denis, Lise",NDP,Quebec,72.0,Female
+4,"Fry, Hedy",Liberal,British Columbia,71.0,Female
+5,"Turmel, Nycole",NDP,Quebec,70.0,Female
+6,"Sgro, Judy",Liberal,Ontario,68.0,Female
+7,"Raynault, Francine",NDP,Quebec,67.0,Female
+8,"Davidson, Patricia",Conservative,Ontario,66.0,Female
+9,"Smith, Joy",Conservative,Manitoba,65.0,Female
+10,"Wong, Alice",Conservative,British Columbia,64.0,Female
+11,"O'Neill Gordon, Tilly",Conservative,New Brunswick,63.0,Female
+12,"Ablonczy, Diane",Conservative,Alberta,63.0,Female
+13,"Duncan, Linda Francis",NDP,Alberta,63.0,Female
+14,"Bennett, Carolyn",Liberal,Ontario,62.0,Female
+15,"Nash, Peggy",NDP,Ontario,61.0,Female
+16,"Mathyssen, Irene",NDP,Ontario,61.0,Female
+17,"Sims, Jinny Jogindera",NDP,British Columbia,60.0,Female
+18,"Foote, Judy",Liberal,Newfoundland and Labrador,60.0,Female
+19,"Crowder, Jean",NDP,British Columbia,60.0,Female
+20,"Davies, Libby",NDP,British Columbia,59.0,Female
+21,"Yelich, Lynne",Conservative,Saskatchewan,59.0,Female
+22,"Day, Anne-Marie",NDP,Quebec,58.0,Female
+23,"May, Elizabeth",Green,British Columbia,58.0,Female
+24,"Murray, Joyce",Liberal,British Columbia,58.0,Female
+25,"Findlay, Kerry-Lynne D.",Conservative,British Columbia,57.0,Female
+26,"Brown, Lois",Conservative,Ontario,57.0,Female
+27,"Laverdière, Hélène",NDP,Quebec,57.0,Female
+28,"Boutin-Sweet, Marjolaine",NDP,Quebec,57.0,Female
+29,"Crockatt, Joan",Conservative,Alberta,56.0,Female
+30,"Chow, Olivia",NDP,Ontario,55.0,Female
+31,"McLeod, Cathy",Conservative,British Columbia,55.0,Female
+32,"Finley, Diane",Conservative,Ontario,55.0,Female
+33,"LeBlanc, Hélène",NDP,Quebec,54.0,Female
+34,"Grewal, Nina",Conservative,British Columbia,54.0,Female
+35,"Hughes, Carol",NDP,Ontario,54.0,Female
+36,"Shea, Gail",Conservative,Prince Edward Island,53.0,Female
+37,"Truppe, Susan",Conservative,Ontario,53.0,Female
+38,"Young, Wai",Conservative,British Columbia,52.0,Female
+39,"Gallant, Cheryl",Conservative,Ontario,52.0,Female
+40,"Boivin, Françoise",NDP,Quebec,52.0,Female
+41,"Block, Kelly",Conservative,Saskatchewan,51.0,Female
+42,"Ayala, Paulina",NDP,Quebec,50.0,Female
+43,"Groguhé, Sadia",NDP,Quebec,50.0,Female
+44,"Charlton, Chris",NDP,Ontario,49.0,Female
+45,"Bergen, Candice",Conservative,Manitoba,48.0,Female
+46,"Perreault, Manon",NDP,Quebec,46.0,Female
+47,"James, Roxanne",Conservative,Ontario,46.0,Female
+48,"Ambler, Stella",Conservative,Ontario,46.0,Female
+49,"Duncan, Kirsty",Liberal,Ontario,46.0,Female
+50,"Glover, Shelly",Conservative,Manitoba,45.0,Female
+51,"Aglukkaq, Leona",Conservative,Territories,45.0,Female
+52,"Raitt, Lisa",Conservative,Ontario,44.0,Female
+53,"Ambrose, Rona",Conservative,Alberta,43.0,Female
+54,"Leitch, Kellie",Conservative,Ontario,42.0,Female
+55,"Leslie, Megan",NDP,Nova Scotia,39.0,Female
+56,"Hassainia, Sana",NDP,Quebec,38.0,Female
+57,"Adams, Eve",Conservative,Ontario,38.0,Female
+58,"Rempel, Michelle",Conservative,Alberta,32.0,Female
+59,"Papillon, Annick",NDP,Quebec,32.0,Female
+60,"Sitsabaiesan, Rathika",NDP,Ontario,31.0,Female
+61,"Quach, Anne Minh-Thu",NDP,Quebec,30.0,Female
+62,"Ashton, Niki",NDP,Manitoba,30.0,Female
+63,"Moore, Christine",NDP,Quebec,29.0,Female
+64,"Morin, Isabelle",NDP,Quebec,28.0,Female
+65,"Blanchette-Lamothe, Lysane",NDP,Quebec,28.0,Female
+66,"Brosseau, Ruth Ellen",NDP,Quebec,28.0,Female
+67,"Latendresse, Alexandrine",NDP,Quebec,28.0,Female
+68,"Doré Lefebvre, Rosane",NDP,Quebec,28.0,Female
+69,"Morin, Marie-Claude",NDP,Quebec,27.0,Female
+70,"Michaud, Élaine",NDP,Quebec,27.0,Female
+71,"Péclet, Ève",NDP,Quebec,24.0,Female
+72,"Freeman, Mylène",NDP,Quebec,23.0,Female
+73,"Borg, Charmaine",NDP,Quebec,22.0,Female
+74,"Bateman, Joyce",Conservative,Manitoba,,Female
+75,"Hiebert, Russ",Conservative,British Columbia,43.0,Male
+76,"Jacob, Pierre",NDP,Quebec,59.0,Male
+77,"Vellacott, Maurice",Conservative,Saskatchewan,57.0,Male
+78,"Boughen, Ray",Conservative,Saskatchewan,75.0,Male
+79,"O'Connor, Gordon",Conservative,Ontario,73.0,Male
+80,"Cotler, Irwin",Liberal,Quebec,72.0,Male
+81,"Oliver, Joe",Conservative,Ontario,72.0,Male
+82,"Tilson, David Allan",Conservative,Ontario,71.0,Male
+83,"Fantino, Julian",Conservative,Ontario,70.0,Male
+84,"Kent, Peter",Conservative,Ontario,69.0,Male
+85,"Plamondon, Louis",Bloc Quebecois,Quebec,69.0,Male
+86,"Schellenberger, Gary",Conservative,Ontario,69.0,Male
+87,"Lauzon, Guy",Conservative,Ontario,68.0,Male
+88,"Harris, Richard M.",Conservative,British Columbia,68.0,Male
+89,"Goldring, Peter",Conservative,Alberta,68.0,Male
+90,"Atamanenko, Alex",NDP,British Columbia,67.0,Male
+91,"Payne, LaVar",Conservative,Alberta,67.0,Male
+92,"Breitkreuz, Garry W.",Conservative,Saskatchewan,67.0,Male
+93,"Genest, Réjean",NDP,Quebec,66.0,Male
+94,"MacKenzie, Dave",Conservative,Ontario,66.0,Male
+95,"Hyer, Bruce",NDP,Ontario,66.0,Male
+96,"MacAulay, Lawrence",Liberal,Prince Edward Island,66.0,Male
+97,"Galipeau, Royal",Conservative,Ontario,65.0,Male
+98,"Marston, Wayne",NDP,Ontario,65.0,Male
+99,"Hawn, Laurie",Conservative,Alberta,65.0,Male
+100,"Kramp, Daryl",Conservative,Ontario,65.0,Male
+101,"Shipley, Bev",Conservative,Ontario,65.0,Male
+102,"Kerr, Greg",Conservative,Nova Scotia,65.0,Male
+103,"Comartin, Joe",NDP,Ontario,65.0,Male
+104,"Norlock, Rick",Conservative,Ontario,64.0,Male
+105,"McKay, John",Liberal,Ontario,64.0,Male
+106,"Mayes, Colin",Conservative,British Columbia,64.0,Male
+107,"Rae, Bob",Liberal,Ontario,64.0,Male
+108,"Harris, Jack",NDP,Newfoundland and Labrador,64.0,Male
+109,"Duncan, John",Conservative,British Columbia,64.0,Male
+110,"Chisu, Corneliu",Conservative,Ontario,63.0,Male
+111,"Garneau, Marc",Liberal,Quebec,63.0,Male
+112,"Easter, Arnold Wayne",Liberal,Prince Edward Island,63.0,Male
+113,"Aspin, Jay",Conservative,Ontario,63.0,Male
+114,"Goodale, Ralph",Liberal,Saskatchewan,63.0,Male
+115,"Albrecht, Harold",Conservative,Ontario,63.0,Male
+116,"Gravelle, Claude",NDP,Ontario,63.0,Male
+117,"Komarnicki, Ed",Conservative,Saskatchewan,63.0,Male
+118,"Flaherty, James Michael (Jim)",Conservative,Ontario,62.0,Male
+119,"Rankin, Murray",NDP,British Columbia,62.0,Male
+120,"McCallum, John",Liberal,Ontario,62.0,Male
+121,"Warawa, Mark",Conservative,British Columbia,62.0,Male
+122,"Obhrai, Deepak",Conservative,Alberta,62.0,Male
+123,"Benoit, Leon Earl",Conservative,Alberta,62.0,Male
+124,"Leung, Chungsen",Conservative,Ontario,62.0,Male
+125,"Morin, Marc-André",NDP,Quebec,61.0,Male
+126,"Sopuck, Robert",Conservative,Manitoba,61.0,Male
+127,"Ritz, Gerry",Conservative,Saskatchewan,61.0,Male
+128,"Garrison, Randall",NDP,British Columbia,61.0,Male
+129,"Lunney, James",Conservative,British Columbia,61.0,Male
+130,"Lukiwski, Tom",Conservative,Saskatchewan,61.0,Male
+131,"Carmichael, John",Conservative,Ontario,60.0,Male
+132,"Menzies, Ted",Conservative,Alberta,60.0,Male
+133,"Valcourt, Bernard",Conservative,New Brunswick,60.0,Male
+134,"Ashfield, Keith",Conservative,New Brunswick,60.0,Male
+135,"Nicholson, Rob",Conservative,Ontario,60.0,Male
+136,"Young, Terence H.",Conservative,Ontario,60.0,Male
+137,"Toews, Vic",Conservative,Manitoba,60.0,Male
+138,"Sullivan, Mike",NDP,Ontario,60.0,Male
+139,"Patry, Claude",NDP,Quebec,59.0,Male
+140,"Keddy, Gerald",Conservative,Nova Scotia,59.0,Male
+141,"Bevington, Dennis Fraser",NDP,Territories,59.0,Male
+142,"Allen, Malcolm",NDP,Ontario,59.0,Male
+143,"Rafferty, John",NDP,Ontario,59.0,Male
+144,"Dreeshen, Earl",Conservative,Alberta,59.0,Male
+145,"Kamp, Randy",Conservative,British Columbia,59.0,Male
+146,"Merrifield, Rob",Conservative,Alberta,59.0,Male
+147,"Woodworth, Stephen",Conservative,Ontario,58.0,Male
+148,"McColeman, Phil",Conservative,Ontario,58.0,Male
+149,"Lebel, Denis",Conservative,Quebec,58.0,Male
+150,"Lizon, Wladyslaw",Conservative,Ontario,58.0,Male
+151,"Holder, Ed",Conservative,Ontario,58.0,Male
+152,"Valeriote, Frank",Liberal,Ontario,58.0,Male
+153,"Christopherson, David",NDP,Ontario,58.0,Male
+154,"Mulcair, Thomas J.",NDP,Quebec,58.0,Male
+155,"Daniel, Joe",Conservative,Ontario,58.0,Male
+156,"Karygiannis, Jim",Liberal,Ontario,57.0,Male
+157,"Godin, Yvon",NDP,New Brunswick,57.0,Male
+158,"Dionne Labelle, Pierre",NDP,Quebec,57.0,Male
+159,"Preston, Joe",Conservative,Ontario,57.0,Male
+160,"Bélanger, Mauril",Liberal,Ontario,57.0,Male
+161,"Fast, Edward",Conservative,British Columbia,57.0,Male
+162,"Tweed, Mervin C.",Conservative,Manitoba,57.0,Male
+163,"Dion, Stéphane",Liberal,Quebec,57.0,Male
+164,"Van Kesteren, Dave",Conservative,Ontario,57.0,Male
+165,"Cuzner, Rodger",Liberal,Nova Scotia,57.0,Male
+166,"Martin, Pat",NDP,Manitoba,57.0,Male
+167,"Stoffer, Peter",NDP,Nova Scotia,56.0,Male
+168,"Miller, Larry",Conservative,Ontario,56.0,Male
+169,"Blanchette, Denis",NDP,Quebec,56.0,Male
+170,"Nunez-Melo, José",NDP,Quebec,56.0,Male
+171,"Goguen, Robert",Conservative,New Brunswick,55.0,Male
+172,"Scarpaleggia, Francis",Liberal,Quebec,55.0,Male
+173,"Sweet, David",Conservative,Ontario,55.0,Male
+174,"Anderson, David",Conservative,Saskatchewan,55.0,Male
+175,"Chisholm, Robert",NDP,Nova Scotia,55.0,Male
+176,"Stanton, Bruce",Conservative,Ontario,55.0,Male
+177,"Goodyear, Gary",Conservative,Ontario,54.0,Male
+178,"Weston, John",Conservative,British Columbia,54.0,Male
+179,"Dechert, Bob",Conservative,Ontario,54.0,Male
+180,"Shory, Devinder",Conservative,Alberta,54.0,Male
+181,"Pilon, François",NDP,Quebec,54.0,Male
+182,"Hayes, Bryan",Conservative,Ontario,54.0,Male
+183,"Giguère, Alain",NDP,Quebec,54.0,Male
+184,"Sorenson, Kevin",Conservative,Alberta,54.0,Male
+185,"Benskin, Tyrone",NDP,Quebec,53.0,Male
+186,"Menegakis, Costas",Conservative,Ontario,53.0,Male
+187,"Harper, Stephen",Conservative,Alberta,53.0,Male
+188,"Wilks, David",Conservative,British Columbia,53.0,Male
+189,"Regan, Geoff",Liberal,Nova Scotia,53.0,Male
+190,"McGuinty, David",Liberal,Ontario,52.0,Male
+191,"Gosal, Bal",Conservative,Ontario,52.0,Male
+192,"Aubin, Robert",NDP,Quebec,52.0,Male
+193,"Eyking, Mark",Liberal,Nova Scotia,52.0,Male
+194,"Brown, Gordon",Conservative,Ontario,52.0,Male
+195,"Allen, Mike",Conservative,New Brunswick,52.0,Male
+196,"Clement, Tony",Conservative,Ontario,51.0,Male
+197,"Cannan, Ronald",Conservative,British Columbia,51.0,Male
+198,"Rousseau, Jean",NDP,Quebec,51.0,Male
+199,"Opitz, Ted",Conservative,Ontario,51.0,Male
+200,"Toet, Lawrence",Conservative,Manitoba,50.0,Male
+201,"Cash, Andrew",NDP,Ontario,50.0,Male
+202,"Lamoureux, Kevin",Liberal,Manitoba,50.0,Male
+203,"Scott, Craig",NDP,Ontario,50.0,Male
+204,"Adler, Mark",Conservative,Ontario,50.0,Male
+205,"Carrie, Colin",Conservative,Ontario,50.0,Male
+206,"Julian, Peter",NDP,British Columbia,50.0,Male
+207,"Pacetti, Massimo",Liberal,Quebec,50.0,Male
+208,"Saganash, Romeo",NDP,Quebec,50.0,Male
+209,"Angus, Charlie",NDP,Ontario,50.0,Male
+210,"Davies, Don",NDP,British Columbia,49.0,Male
+211,"Bernier, Maxime",Conservative,Quebec,49.0,Male
+212,"Dewar, Paul",NDP,Ontario,49.0,Male
+213,"Jean, Brian",Conservative,Alberta,49.0,Male
+214,"Devolin, Barry",Conservative,Ontario,49.0,Male
+215,"Lemieux, Pierre",Conservative,Ontario,49.0,Male
+216,"Van Loan, Peter",Conservative,Ontario,49.0,Male
+217,"Casey, Sean",Liberal,Prince Edward Island,49.0,Male
+218,"Nantel, Pierre",NDP,Quebec,49.0,Male
+219,"Coderre, Denis",Liberal,Quebec,49.0,Male
+220,"Wallace, Mike",Conservative,Ontario,49.0,Male
+221,"Braid, Peter",Conservative,Ontario,48.0,Male
+222,"Gourde, Jacques",Conservative,Quebec,48.0,Male
+223,"Reid, Scott",Conservative,Ontario,48.0,Male
+224,"Hsu, Ted",Liberal,Ontario,48.0,Male
+225,"Saxton, Andrew",Conservative,British Columbia,48.0,Male
+226,"Weston, Rodney",Conservative,New Brunswick,48.0,Male
+227,"Penashue, Peter",Conservative,Newfoundland and Labrador,48.0,Male
+228,"Bellavance, André",Bloc Quebecois,Quebec,48.0,Male
+229,"Rathgeber, Brent",Conservative,Alberta,48.0,Male
+230,"Kellway, Matthew",NDP,Ontario,48.0,Male
+231,"Toone, Philip",NDP,Quebec,47.0,Male
+232,"Allison, Dean",Conservative,Ontario,47.0,Male
+233,"Trottier, Bernard",Conservative,Ontario,47.0,Male
+234,"Blaney, Steven",Conservative,Quebec,47.0,Male
+235,"Bezan, James",Conservative,Manitoba,47.0,Male
+236,"MacKay, Peter Gordon",Conservative,Nova Scotia,47.0,Male
+237,"Dykstra, Richard",Conservative,Ontario,46.0,Male
+238,"Sandhu, Jasbir",NDP,British Columbia,46.0,Male
+239,"Donnelly, Fin",NDP,British Columbia,46.0,Male
+240,"Armstrong, Scott",Conservative,Nova Scotia,46.0,Male
+241,"Byrne, Gerry",Liberal,Newfoundland and Labrador,46.0,Male
+242,"Stewart, Kennedy",NDP,British Columbia,46.0,Male
+243,"Cleary, Ryan",NDP,Newfoundland and Labrador,46.0,Male
+244,"Côté, Raymond",NDP,Quebec,45.0,Male
+245,"Clarke, Rob",Conservative,Saskatchewan,45.0,Male
+246,"Brison, Scott",Liberal,Nova Scotia,45.0,Male
+247,"Butt, Brad",Conservative,Ontario,45.0,Male
+248,"Rickford, Greg",Conservative,Ontario,45.0,Male
+249,"LeBlanc, Dominic",Liberal,New Brunswick,45.0,Male
+250,"Hoback, Randy",Conservative,Saskatchewan,45.0,Male
+251,"Caron, Guy",NDP,Quebec,44.0,Male
+252,"Brahmi, Tarik",NDP,Quebec,44.0,Male
+253,"Kenney, Jason",Conservative,Alberta,44.0,Male
+254,"Masse, Brian",NDP,Ontario,44.0,Male
+255,"Alexander, Chris",Conservative,Ontario,44.0,Male
+256,"Zimmer, Bob",Conservative,British Columbia,44.0,Male
+257,"Calkins, Blaine",Conservative,Alberta,44.0,Male
+258,"Baird, John",Conservative,Ontario,43.0,Male
+259,"Lake, Mike",Conservative,Alberta,43.0,Male
+260,"Simms, Scott",Liberal,Newfoundland and Labrador,43.0,Male
+261,"Thibeault, Glenn",NDP,Ontario,43.0,Male
+262,"Williamson, John",Conservative,New Brunswick,42.0,Male
+263,"Calandra, Paul",Conservative,Ontario,42.0,Male
+264,"Chicoine, Sylvain",NDP,Quebec,42.0,Male
+265,"Del Mastro, Dean",Conservative,Ontario,42.0,Male
+266,"Rajotte, James",Conservative,Alberta,42.0,Male
+267,"Seeback, Kyle",Conservative,Ontario,42.0,Male
+268,"Watson, Jeff",Conservative,Ontario,41.0,Male
+269,"Lapointe, François",NDP,Quebec,41.0,Male
+270,"Nicholls, Jamie",NDP,Quebec,41.0,Male
+271,"Chong, Michael D.",Conservative,Ontario,41.0,Male
+272,"Trudeau, Justin",Liberal,Quebec,41.0,Male
+273,"Larose, Jean-François",NDP,Quebec,40.0,Male
+274,"Anders, Rob",Conservative,Alberta,40.0,Male
+275,"Fletcher, Steven John",Conservative,Manitoba,40.0,Male
+276,"Cullen, Nathan",NDP,British Columbia,40.0,Male
+277,"Ravignat, Mathieu",NDP,Quebec,39.0,Male
+278,"Bruinooge, Rod",Conservative,Manitoba,39.0,Male
+279,"Mai, Hoang",NDP,Quebec,39.0,Male
+280,"Boulerice, Alexandre",NDP,Quebec,39.0,Male
+281,"Fortin, Jean-François",Bloc Quebecois,Quebec,39.0,Male
+282,"Leef, Ryan",Conservative,Territories,38.0,Male
+283,"Paradis, Christian",Conservative,Quebec,38.0,Male
+284,"Choquette, François",NDP,Quebec,38.0,Male
+285,"Moore, Rob",Conservative,New Brunswick,38.0,Male
+286,"Trost, Brad",Conservative,Saskatchewan,38.0,Male
+287,"Gill, Parm",Conservative,Ontario,38.0,Male
+288,"Hillyer, Jim",Conservative,Alberta,38.0,Male
+289,"Richards, Blake",Conservative,Alberta,38.0,Male
+290,"Uppal, Tim",Conservative,Alberta,38.0,Male
+291,"Andrews, Scott",Liberal,Newfoundland and Labrador,37.0,Male
+292,"Moore, James",Conservative,British Columbia,36.0,Male
+293,"Lobb, Ben",Conservative,Ontario,36.0,Male
+294,"Albas, Dan",Conservative,British Columbia,36.0,Male
+295,"Storseth, Brian",Conservative,Alberta,34.0,Male
+296,"Strahl, Mark",Conservative,British Columbia,34.0,Male
+297,"Brown, Patrick W.",Conservative,Ontario,34.0,Male
+298,"Warkentin, Chris",Conservative,Alberta,34.0,Male
+299,"Scheer, Andrew",Conservative,Saskatchewan,33.0,Male
+300,"Poilievre, Pierre",Conservative,Ontario,33.0,Male
+301,"Genest-Jourdain, Jonathan",NDP,Quebec,33.0,Male
+302,"Harris, Dan",NDP,Ontario,33.0,Male
+303,"Tremblay, Jonathan",NDP,Quebec,28.0,Male
+304,"Morin, Dany",NDP,Quebec,27.0,Male
+305,"Dubé, Matthew",NDP,Quebec,24.0,Male
+306,"Dusseault, Pierre-Luc",NDP,Quebec,21.0,Male
+307,"O'Toole, Erin",Conservative,Ontario,,Male
+</div>
+    </body>
+</html>
