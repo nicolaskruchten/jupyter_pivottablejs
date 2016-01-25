@@ -8,7 +8,7 @@ template = """
 <html>
     <head>
         <title>PivotTable.js</title>
-        
+
         <!-- external libs from cdnjs -->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -47,13 +47,13 @@ template = """
                 if(window.location != window.parent.location)
                     $("<a>", {target:"_blank", href:""})
                         .text("[pop out]").prependTo($("body"));
-                    
-                $("#output").pivotUI( 
-                    $.csv.toArrays($("#output").text()), 
-                    { 
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    {
                         renderers: $.extend(
-                            $.pivotUtilities.renderers, 
-                            $.pivotUtilities.c3_renderers, 
+                            $.pivotUtilities.renderers,
+                            $.pivotUtilities.c3_renderers,
                             $.pivotUtilities.d3_renderers,
                             $.pivotUtilities.export_renderers
                             ),
@@ -69,8 +69,9 @@ template = """
 
 from IPython.display import IFrame
 
-def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500"):
+def pivot_ui(df, outfile_path="pivottablejs.html", web_path=None, width="100%", height="500"):
+    web_path = web_path or outfile_path
     with open(outfile_path, 'w') as outfile:
         outfile.write(template % df.to_csv())
-    return IFrame(src=outfile_path, width=width, height=height)
-        
+    return IFrame(src=web_path, width=width, height=height)
+
