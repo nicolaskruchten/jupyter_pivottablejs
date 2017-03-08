@@ -83,4 +83,9 @@ def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500",
         outfile.write(template % { "df":df.to_csv() , "pivot_extras":json.dumps(pivot_extras) } )
         
     return IFrame(src=outfile_path, width=width, height=height)
-        
+
+# EXAMPLE:
+# import pandas as pd
+# df = pd.DataFrame({"a":["col","alto","ancho","bla"],"b":[2,3,4,5],"c":[6,2,6,8]});
+# %run ~/work/yumok_modules/pivottablejs/__init__.py
+# pivot_ui(df,rows=["a"],cols=["b"],vals=["c"],aggregatorName="Sum",rendererName = "Heatmap")
