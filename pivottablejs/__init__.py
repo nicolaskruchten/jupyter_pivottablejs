@@ -76,11 +76,11 @@ import json
 def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500", **kargs):
     pivot_extras = {}
     for key in ["rows","cols","aggregatorName","vals","rendererName"]:
-        if kargs[key]:
+        if key in kargs.keys():
             pivot_extras[key] = kargs[key]
         
     with open(outfile_path, 'w') as outfile:
-        outfile.write(template % { df:df.to_csv() , pivot_extras:json.dumps(pivot_extras) } )
+        outfile.write(template % { "df":df.to_csv() , "pivot_extras":json.dumps(pivot_extras) } )
         
     return IFrame(src=outfile_path, width=width, height=height)
         
