@@ -3,7 +3,7 @@
 # %pivottablejs data_frame
 
 
-template = """
+template = u"""
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,27 +50,37 @@ template = """
                     
                 $("#output").pivotUI( 
                     $.csv.toArrays($("#output").text()), 
-                    { 
-                        renderers: $.extend(
-                            $.pivotUtilities.renderers, 
-                            $.pivotUtilities.c3_renderers, 
-                            $.pivotUtilities.d3_renderers,
-                            $.pivotUtilities.export_renderers
-                            ),
-                        hiddenAttributes: [""]
-                    }
+                    $.extend({ 
+                            renderers: $.extend(
+                                $.pivotUtilities.renderers, 
+                                $.pivotUtilities.c3_renderers, 
+                                $.pivotUtilities.d3_renderers,
+                                $.pivotUtilities.export_renderers
+                                ),
+                            hiddenAttributes: [""]
+                        }
+                        ,
+                        %(pivot_extras)s
+                    )
                 ).show();
              });
         </script>
-        <div id="output" style="display: none;">%s</div>
+        <div id="output" style="display: none;">%(df)s</div>
     </body>
 </html>
 """
 
 from IPython.display import IFrame
+import json
 
-def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500"):
+def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500", **kargs):
+    pivot_extras = {}
+    for key in ["rows","cols","aggregatorName","vals","rendererName"]:
+        if kargs[key]:
+            pivot_extras[key] = kargs[key]
+        
     with open(outfile_path, 'w') as outfile:
-        outfile.write(template % df.to_csv())
+        outfile.write(template % { df:df.to_csv() , pivot_extras:json.dumps(pivot_extras) } )
+        
     return IFrame(src=outfile_path, width=width, height=height)
         
