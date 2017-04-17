@@ -11,7 +11,7 @@ template = """
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        
+
         <title>PivotTable.js</title>
 
         <!-- external libs from cdnjs -->
@@ -52,13 +52,13 @@ template = """
                 if(window.location != window.parent.location)
                     $("<a>", {target:"_blank", href:""})
                         .text("[pop out]").prependTo($("body"));
-                    
-                $("#output").pivotUI( 
-                    $.csv.toArrays($("#output").text()), 
-                    $.extend({ 
+
+                $("#output").pivotUI(
+                    $.csv.toArrays($("#output").text()),
+                    $.extend({
                             renderers: $.extend(
-                                $.pivotUtilities.renderers, 
-                                $.pivotUtilities.c3_renderers, 
+                                $.pivotUtilities.renderers,
+                                $.pivotUtilities.c3_renderers,
                                 $.pivotUtilities.d3_renderers,
                                 $.pivotUtilities.export_renderers
                                 ),
@@ -83,12 +83,12 @@ def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500",
     for key in ["rows","cols","aggregatorName","vals","rendererName"]:
         if key in kargs.keys():
             pivot_extras[key] = kargs[key]
-        
+
     with open(outfile_path, 'w') as outfile:
         outfile.write(template % { "df":df.to_csv() , "pivot_extras":json.dumps(pivot_extras) } )
-        
+
     return IFrame(src=outfile_path, width=width, height=height)
-        
+
 
 # EXAMPLE:
 # import pandas as pd
