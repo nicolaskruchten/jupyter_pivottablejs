@@ -20,6 +20,7 @@ Usage
     from pivottablejs import pivot_ui
 
     pivot_ui(df)
+    pivot_ui(df, rows['row_name'], cols=['col_name']) # +any string param from PivotTable.js
 
 .. _Jupyter/IPython Notebook: http://jupyter.org/
 .. _PivotTable.js: https://github.com/nicolaskruchten/pivottable
