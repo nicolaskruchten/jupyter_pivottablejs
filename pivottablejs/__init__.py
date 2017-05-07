@@ -1,7 +1,8 @@
-template = """
+TEMPLATE = """
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>PivotTable.js</title>
 
         <!-- external libs from cdnjs -->
@@ -47,7 +48,7 @@ template = """
 
                 $("#output").pivotUI(
                     $.csv.toArrays($("#output").text()),
-                    {
+                    $.extend({
                         renderers: $.extend(
                             $.pivotUtilities.renderers,
                             $.pivotUtilities.c3_renderers,
@@ -55,19 +56,22 @@ template = """
                             $.pivotUtilities.export_renderers
                             ),
                         hiddenAttributes: [""]
-                    }
+                    }, %(kwargs)s)
                 ).show();
              });
         </script>
-        <div id="output" style="display: none;">%s</div>
+        <div id="output" style="display: none;">%(csv)s</div>
     </body>
 </html>
 """
 
 from IPython.display import IFrame
+import json
 
-def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500"):
+def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500",
+    **kwargs):
     with open(outfile_path, 'w') as outfile:
-        outfile.write(template % df.to_csv())
+        outfile.write(TEMPLATE %
+            dict(csv=df.to_csv(), kwargs=json.dumps(kwargs)))
     return IFrame(src=outfile_path, width=width, height=height)
 
