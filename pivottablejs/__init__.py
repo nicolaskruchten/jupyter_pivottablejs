@@ -68,6 +68,6 @@ from IPython.display import IFrame
 
 def pivot_ui(df, outfile_path = "pivottablejs.html", width="100%", height="500"):
     with open(outfile_path, 'w') as outfile:
-        outfile.write(template % df.to_csv())
+        outfile.write(template % df.to_csv().decode("ascii", "ignore"))
     return IFrame(src=outfile_path, width=width, height=height)
 
