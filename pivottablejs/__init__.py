@@ -68,10 +68,10 @@ TEMPLATE = """
 from IPython.display import IFrame
 import json
 
-def pivot_ui(df, outfile_path = "pivottablejs.html", url_prefix="",
+def pivot_ui(df, outfile_path = "pivottablejs.html", url="",
     width="100%", height="500", **kwargs):
     with open(outfile_path, 'w') as outfile:
         outfile.write(TEMPLATE %
             dict(csv=df.to_csv(), kwargs=json.dumps(kwargs)))
-    return IFrame(src=url_prefix+outfile_path, width=width, height=height)
+    return IFrame(src=url or outfile_path, width=width, height=height)
 
