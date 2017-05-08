@@ -13,6 +13,7 @@ Usage
 -----
 
 .. code:: python
+
     import pandas as pd
     df = pd.read_csv("some_input.csv")
 
@@ -26,11 +27,13 @@ Advanced Usage
 Include any `valid option`_ to PivotTable.js's `pivotUI()` function as a keyword argument.
 
 .. code:: python
+
     pivot_ui(df, rows['row_name'], cols=['col_name'])
 
 Independently control the output file path and the URL used to access it from Jupyter.
 
 .. code:: python
+
     pivot_ui(df, outfile_path="x.html", url_prefix="http://localhost/path/")
 
 .. _Jupyter/IPython Notebook: http://jupyter.org/
