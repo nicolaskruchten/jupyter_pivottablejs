@@ -31,7 +31,7 @@ setup(
     url='https://github.com/nicolaskruchten/jupyter_pivottablejs',
 
     # Author details
-    author='Nicolas Kruchten',
+    author='Nicolas Kruchten', 
     author_email='nicolas@kruchten.com',
 
     # Choose your license
