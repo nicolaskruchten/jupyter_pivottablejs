@@ -28,7 +28,7 @@ Include any `valid option`_ to PivotTable.js's `pivotUI()` function as a keyword
 
 .. code:: python
 
-    pivot_ui(df, rows['row_name'], cols=['col_name'])
+    pivot_ui(df, rows=['row_name'], cols=['col_name'])
 
 Independently control the output file path and the URL used to access it from Jupyter.
 
