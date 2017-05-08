@@ -38,4 +38,4 @@ Independently control the output file path and the URL used to access it from Ju
 
 .. _Jupyter/IPython Notebook: http://jupyter.org/
 .. _PivotTable.js: https://github.com/nicolaskruchten/pivottable
-.. _valid option to PivotTable.js's pivotUI() function: https://github.com/nicolaskruchten/pivottable/wiki/Parameters#options-object-for-pivotui
+.. _option to PivotTable.js's pivotUI() function: https://github.com/nicolaskruchten/pivottable/wiki/Parameters#options-object-for-pivotui
