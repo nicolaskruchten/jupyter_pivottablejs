@@ -39,4 +39,4 @@ coverage.xml
 *.mo
 
 # Sphinx documentation
-docs/_build/
+docs/_build/example/pivottablejs.html

@@ -1,4 +1,4 @@
-TEMPLATE = """
+TEMPLATE = u"""
 <!DOCTYPE html>
 <html>
     <head>
@@ -66,12 +66,15 @@ TEMPLATE = """
 """
 
 from IPython.display import IFrame
-import json
+import json, io
 
 def pivot_ui(df, outfile_path = "pivottablejs.html", url="",
     width="100%", height="500", **kwargs):
-    with open(outfile_path, 'w') as outfile:
+    with io.open(outfile_path, 'wt', encoding='utf8') as outfile:
+        csv = df.to_csv(encoding='utf8')
+        if hasattr(csv, 'decode'):
+            csv = csv.decode('utf8')
         outfile.write(TEMPLATE %
-            dict(csv=df.to_csv(), kwargs=json.dumps(kwargs)))
+            dict(csv=csv, kwargs=json.dumps(kwargs)))
     return IFrame(src=url or outfile_path, width=width, height=height)
 
