@@ -7,9 +7,9 @@ care of `PivotTable.js`_
 Installation
 ------------
 
-``pip install pivottablejs``
+``pip install pivottablejs`` or ``conda install pivottablejs``
 
-**Note** do not use ``conda`` to install this library, as you will end up installing `this fork`_ instead. Please vote on `this issue`_ if you want to help resolve this situation.
+**Note** in the past, the ``conda`` command above installed `pivottablejs-airgap`_ instead of this library; apologies for any confusion this change may cause.
 
 Usage
 -----
@@ -40,6 +40,5 @@ Independently control the output file path and the URL used to access it from Ju
 
 .. _Jupyter/IPython Notebook: http://jupyter.org/
 .. _PivotTable.js: https://github.com/nicolaskruchten/pivottable
-.. _this fork: https://github.com/ContinuumIO/pivottablejs-airgap
-.. _this issue: https://github.com/ContinuumIO/pivottablejs-airgap/issues/3
+.. _pivottablejs-airgap: https://github.com/ContinuumIO/pivottablejs-airgap
 .. _option to PivotTable.js's pivotUI() function: https://github.com/nicolaskruchten/pivottable/wiki/Parameters#options-object-for-pivotui
