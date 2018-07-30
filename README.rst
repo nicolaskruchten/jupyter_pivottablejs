@@ -26,7 +26,7 @@ Usage
 Advanced Usage
 --------------
 
-Include any `option to PivotTable.js's pivotUI() function`_ as a keyword argument.
+Include any `JSON-serializable option to PivotTable.js's pivotUI() function`_ as a keyword argument.
 
 .. code:: python
 
