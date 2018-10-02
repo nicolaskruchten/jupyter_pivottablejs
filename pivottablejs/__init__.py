@@ -3,7 +3,7 @@ TEMPLATE = u"""
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>PivotTable.js</title>
+        <title>(%title)s</title>
 
         <!-- external libs from cdnjs -->
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
@@ -68,13 +68,13 @@ TEMPLATE = u"""
 from IPython.display import IFrame
 import json, io
 
-def pivot_ui(df, outfile_path = "pivottablejs.html", url="",
+def pivot_ui(df, outfile_path = "pivottablejs.html", title="PivotTable.js", url="",
     width="100%", height="500", **kwargs):
     with io.open(outfile_path, 'wt', encoding='utf8') as outfile:
         csv = df.to_csv(encoding='utf8')
         if hasattr(csv, 'decode'):
             csv = csv.decode('utf8')
         outfile.write(TEMPLATE %
-            dict(csv=csv, kwargs=json.dumps(kwargs)))
-    return IFrame(src=url or outfile_path, width=width, height=height)
+            dict(csv=csv, title=title,kwargs=json.dumps(kwargs)))
+    return IFrame(src=url or outfile_path, width=width, height=height, title=title)
 
