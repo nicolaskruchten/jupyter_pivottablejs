@@ -4,6 +4,10 @@
 Drag’n’drop Pivot Tables and Charts for `Jupyter/IPython Notebook`_,
 care of `PivotTable.js`_
 
+.. image:: https://mybinder.org/badge_logo.svg
+   :target: https://mybinder.org/v2/gh/nicolaskruchten/jupyter_pivottablejs/master?filepath=example%2Fjupyter_pivottablejs_example.ipynb
+
+
 Installation
 ------------
 
