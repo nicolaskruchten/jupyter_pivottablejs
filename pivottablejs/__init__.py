@@ -1,4 +1,4 @@
-TEMPLATE = u"""
+TEMPLATE = """
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,11 +14,11 @@ TEMPLATE = u"""
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
 
 
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/pivot.min.css">
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/pivot.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/d3_renderers.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/c3_renderers.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/export_renderers.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/%(pivottableVersion)s/pivot.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/%(pivottableVersion)s/pivot.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/%(pivottableVersion)s/d3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/%(pivottableVersion)s/c3_renderers.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/%(pivottableVersion)s/export_renderers.min.js"></script>
 
         <style>
             body {font-family: Verdana;}
@@ -68,13 +68,24 @@ TEMPLATE = u"""
 from IPython.display import IFrame
 import json, io
 
-def pivot_ui(df, outfile_path = "pivottablejs.html", url="",
-    width="100%", height="500", **kwargs):
-    with io.open(outfile_path, 'wt', encoding='utf8') as outfile:
-        csv = df.to_csv(encoding='utf8')
-        if hasattr(csv, 'decode'):
-            csv = csv.decode('utf8')
-        outfile.write(TEMPLATE %
-            dict(csv=csv, kwargs=json.dumps(kwargs)))
-    return IFrame(src=url or outfile_path, width=width, height=height)
 
+def pivot_ui(
+    df,
+    outfile_path="pivottablejs.html",
+    url="",
+    width="100%",
+    height="500",
+    pivottableVersion="2.23.0",
+    **kwargs
+):
+    with io.open(outfile_path, "wt", encoding="utf8") as outfile:
+        csv = df.to_csv(encoding="utf8")
+        if hasattr(csv, "decode"):
+            csv = csv.decode("utf8")
+        outfile.write(
+            TEMPLATE
+            % dict(
+                csv=csv, pivottableVersion=pivottableVersion, kwargs=json.dumps(kwargs)
+            )
+        )
+    return IFrame(src=url or outfile_path, width=width, height=height)
