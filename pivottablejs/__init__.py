@@ -70,7 +70,7 @@ import json, io
 
 def pivot_ui(df, outfile_path = "pivottablejs.html", url="",
     width="100%", height="500", **kwargs):
-    with io.open(outfile_path, 'wt', encoding='utf8') as outfile:
+    with io.open(outfile_path, 'wt', newline="\n", encoding='utf8') as outfile:
         csv = df.to_csv(encoding='utf8')
         if hasattr(csv, 'decode'):
             csv = csv.decode('utf8')
